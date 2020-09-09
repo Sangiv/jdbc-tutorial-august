@@ -33,12 +33,12 @@ public class DatabaseConnector {
         }
     }
 
-    public void updateActor() throws SQLException {
-
+    public void updateActor(String first_name_new, String last_name_new, String first_name_old, String last_name_old) throws SQLException {
+    	statement.executeUpdate(String.format("UPDATE actor SET first_name='%s', last_name='%s' WHERE first_name='%s' and last_name='%s'", first_name_new, last_name_new, first_name_old, last_name_old));
     }
 
-    public void deleteActor() throws SQLException {
-
+    public void deleteActor(String first_name, String last_name) throws SQLException {
+    	statement.executeUpdate(String.format("DELETE FROM actor WHERE first_name='%s' and last_name='%s'", first_name, last_name));
     }
 
 }
