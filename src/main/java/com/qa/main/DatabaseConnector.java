@@ -12,15 +12,21 @@ public class DatabaseConnector {
     private Connection connection;
 
     private Statement statement;
-
+    
     public DatabaseConnector() throws SQLException {
         connection = DriverManager.getConnection(DatabaseConfiguration.URL, DatabaseConfiguration.USER,
                 DatabaseConfiguration.PASSWORD);
     }
-
-    public void createActor(String forename, String surname) throws SQLException {
+    
+    public void close() throws SQLException {
+        connection.close();
+    }
+    
+    
+// CRUD...
+    public void createActor(String first_name, String last_name) throws SQLException {
         statement.executeUpdate(String.format("INSERT INTO actor (`first_name`, `last_name`)" + " VALUES ('%s', '%s')",
-                forename, surname));
+                first_name, last_name));
     }
 
     public void readAllActors() throws SQLException {
